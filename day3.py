@@ -12,14 +12,9 @@ matrix = [[i for i in j] for j in data]
 
 def traverse(right, down):
     trees = 0
-    column_index = 0
-    for i in range(0, rows, down):
-        if matrix[i][column_index] == '#':
+    for i, val in enumerate(range(0, rows, down)):
+        if matrix[val][(i*right) % columns] == '#':
             trees  += 1
-
-        column_index += right
-        if(column_index >= columns):
-            column_index = column_index - columns
 
     return trees
 
