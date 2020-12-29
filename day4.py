@@ -58,6 +58,5 @@ def find_valids(validate_fields):
         
     return valid_passprt
 
-
 print('valid pass:', find_valids(False))
 print('valid pass pt 2:', find_valids(True))
