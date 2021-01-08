@@ -3,7 +3,6 @@ data_file = open(path, 'r')
 
 data = data_file.read().splitlines()
 
-
 def distinct(answers_of_group):
     seen = set()
     for s in answers_of_group:
@@ -11,12 +10,13 @@ def distinct(answers_of_group):
             seen.add(s)
     return seen
 
-def intersection(answers_of_persons):
+def intersects(answers_of_group):
     seen = set()
-    for s in answers_of_persons:
-        for x in s:
-            if x in seen:
-                seen.add(x)
+    for i, s in enumerate(answers_of_group):
+        if i == 0:
+            seen = s
+            next
+        seen = seen.intersection(s)
     return seen
 
 answers = ''
@@ -29,16 +29,14 @@ for i, row in enumerate(data):
         answers = ''
 
 union_sum = 0
-group = set()
+group = []
 
 for i, row in enumerate(data):
     if not row or i == len(data)-1:
-        union_sum = union_sum + len(intersection(group))
+        union_sum = union_sum + len(intersects(group))
         group.clear()
     else:
-        group.add(row)
-
-
+        group.append(set(row))
 
 print('sum of answers (part 1):', sum)
 print('sum of answers (part 2):', union_sum)
