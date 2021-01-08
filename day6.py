@@ -16,7 +16,7 @@ def intersects(answers_of_group):
         if i == 0:
             seen = s
             next
-        seen = seen.intersection(s)
+        seen = seen & s
     return seen
 
 answers = ''
