@@ -22,19 +22,17 @@ edges = []
 
 for node in graph:
     for neighbour in graph[node]:
-        edges.append((node, neighbour))
+        edges.append((neighbour, node))
 
-def find_edge_paths(neighbour):
-    # todo recurse 'up' from shiny gold
-    other_nodes = list(map(lambda y: y[0], filter(lambda x: neighbour in x[1], edges)))
-    
-    if(len(other_nodes) == 0):
-        return [neighbour]
+def find_edges(bag_color):
+    res = [bag_color]
+    for edge in filter(lambda x: bag_color in x[0], edges):
+        res.extend(find_edges(edge[1]))
+    return res
 
-    for other_node in other_nodes:
-        if(len(other_node) > 0):
-            edge_paths = find_edge_paths(other_node)
-            if(edge_paths is True and len(edge_paths) > 0):
-                return edge_paths.extend(neighbour)
 
-print(find_edge_paths('shiny gold'))
+res = set(find_edges('shiny gold'))
+res.remove('shiny gold')
+print(len(res))
+
+
