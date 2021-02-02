@@ -21,12 +21,12 @@ def calc_accumulator(i, exec_table, accumulator):
     res = run_cmd[cmd](val, i, accumulator)
     exec_table[i] = (statement[0], statement[1], statement[2] + 1)
 
-    # if next command is already executed, return
-    if(exec_table[res[0]][2] > 0):
-        return (res[1], True)
-
     # if next command is EOF, return
     if(len(exec_table) == res[0]):
+        return (res[1], True)
+
+    # if next command is already executed, return
+    if(exec_table[res[0]][2] > 0):
         return (res[1], False)
 
     return calc_accumulator(res[0], exec_table, res[1])
@@ -37,4 +37,20 @@ exec_table = [parse_statement(statement) for statement in data]
 
 print('part 1:', calc_accumulator(0, exec_table, 0)[0])
 
-# part 2: bruteforce top to bottom jpm/nop changes
+# reset exec_table
+exec_table = [parse_statement(statement) for statement in data]
+
+flip = {
+    'nop': lambda row: ('jmp', row[1], row[2]),
+    'jmp': lambda row: ('nop', row[1], row[2])
+}
+
+vals = [(i, val[0]) for i, val in enumerate(exec_table) if val[0] == 'nop' or val[0] == 'jmp']
+for i, val in vals:
+    exec_copy = exec_table.copy()
+
+    exec_copy[i] = flip[val](exec_copy[i])
+
+    res = calc_accumulator(0, exec_copy, 0)
+    if(res[1]):
+        print(res[0])
