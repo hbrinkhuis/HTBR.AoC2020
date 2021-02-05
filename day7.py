@@ -1,9 +1,7 @@
 import re
+import stdfuns
 
-path = "day7.txt"
-data_file = open(path, 'r')
-
-data = data_file.read().splitlines()
+data = stdfuns.open_file_split('day7.txt')
 
 graph = { }
 

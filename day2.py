@@ -1,9 +1,7 @@
 import re
+import stdfuns
 
-path = "day2.txt"
-data_file = open(path, 'r')
-
-values = data_file.readlines()
+values = stdfuns.open_file_lines('day2.txt')
 
 num_valid_part_1 = 0
 num_valid_part_2 = 0
@@ -21,7 +19,6 @@ for v in values:
     indices = [i + 1 for i, value in enumerate(chrlist) if value == char]
     if (min_char in indices) ^ (max_char in indices):
         num_valid_part_2 += 1
-
 
 print(num_valid_part_1, "are valid (part 1)")
 print(num_valid_part_2, "are valid (part 2)")

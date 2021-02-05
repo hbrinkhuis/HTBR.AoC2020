@@ -1,9 +1,7 @@
 import re
+import stdfuns
 
-path = "day4.txt"
-data_file = open(path, 'r')
-
-data = data_file.read().splitlines()
+data = stdfuns.open_file_split('day4.txt')
 
 def from_to(x,fr,to):
     return x.isdigit() and int(x) >= fr and int(x) <= to

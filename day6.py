@@ -1,7 +1,6 @@
-path = "day6.txt"
-data_file = open(path, 'r')
+import stdfuns
 
-data = data_file.read().splitlines()
+data = stdfuns.open_file_split('day6.txt')
 
 def distinct(answers_of_group):
     seen = set()

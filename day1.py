@@ -1,7 +1,6 @@
-path = "day1.txt"
-data_file = open(path, 'r')
+import stdfuns
 
-values = data_file.readlines()
+values = stdfuns.open_file_lines('day1.txt')
 
 # convert to int
 intvalues = sorted(list(map(lambda x: int(x), values)))

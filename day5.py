@@ -1,7 +1,6 @@
-path = "day5.txt"
-data_file = open(path, 'r')
+import stdfuns
 
-data = data_file.read().splitlines()
+data = stdfuns.open_file_split('day5.txt')
 
 ticket_id = lambda x: x[0] * 8 + x[1]
 

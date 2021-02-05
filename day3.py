@@ -1,9 +1,7 @@
 import math
+import stdfuns
 
-path = "day3.txt"
-data_file = open(path, 'r')
-
-data = data_file.read().splitlines()
+data = stdfuns.open_file_split('day3.txt')
 
 rows = len(data)
 columns = len(data[0])

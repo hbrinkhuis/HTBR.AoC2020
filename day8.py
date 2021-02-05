@@ -1,7 +1,5 @@
+import stdfuns
 import re
-
-path = "day8.txt"
-data_file = open(path, 'r')
 
 def parse_statement(str):
     m = re.match(r'(nop|acc|jmp) ([\+\-]\d+)', str)
@@ -24,14 +22,13 @@ def calc_accumulator(i, exec_table, accumulator):
     # if next command is EOF, return
     if(len(exec_table) == res[0]):
         return (res[1], True)
-
-    # if next command is already executed, return
+ 
     if(exec_table[res[0]][2] > 0):
         return (res[1], False)
 
     return calc_accumulator(res[0], exec_table, res[1])
 
-data = data_file.read().splitlines()
+data = stdfuns.open_file_split('day8.txt')
 
 exec_table = [parse_statement(statement) for statement in data]
 
@@ -53,4 +50,4 @@ for i, val in vals:
 
     res = calc_accumulator(0, exec_copy, 0)
     if(res[1]):
-        print(res[0])
+        print('part 2:', res[0])
